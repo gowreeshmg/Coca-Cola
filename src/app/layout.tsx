@@ -10,6 +10,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Coca-Cola 3D Experience",
   description: "A hyper-realistic Coca-Cola landing page",
+  appleWebApp: {
+    capable: true,
+    title: "Coca-Cola 3D",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export default function RootLayout({
