@@ -16,8 +16,8 @@ export function OverlayUI() {
     <div className="absolute inset-0 z-10 pointer-events-none flex flex-col w-full font-sans">
       
       {/* Premium Navbar */}
-      <nav className="fixed top-0 left-0 w-full p-6 md:px-12 md:py-8 flex justify-between items-center z-50 pointer-events-auto mix-blend-difference">
-         <div className="text-white font-black text-3xl tracking-tighter">COCA-COLA®</div>
+      <nav className="fixed top-0 left-0 w-full p-4 md:px-12 md:py-8 flex justify-between items-center z-50 pointer-events-auto mix-blend-difference">
+         <div className="text-white font-black text-2xl md:text-3xl tracking-tighter">COCA-COLA®</div>
          <div className="hidden md:flex gap-12 text-white font-bold uppercase tracking-[0.2em] text-xs">
            <a href="#" className="hover:text-[#F40009] transition-colors">Brands</a>
            <a href="#" className="hover:text-[#F40009] transition-colors">Discover</a>
@@ -38,7 +38,7 @@ export function OverlayUI() {
       <section className="h-[100vh] w-full flex items-center justify-start px-4 md:px-20 relative pointer-events-auto bg-gradient-to-b from-transparent via-black/40 to-black/80">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,_var(--tw-gradient-stops))] from-[#F40009]/20 via-transparent to-transparent opacity-60 pointer-events-none" />
         
-        <div className="w-full max-w-lg grid grid-cols-1 gap-6 relative z-10 mt-20">
+        <div className="w-full max-w-lg grid grid-cols-1 gap-4 md:gap-6 relative z-10 mt-32 md:mt-20">
           {bentoCards.map((card, i) => (
             <motion.div 
                key={i}
@@ -46,19 +46,19 @@ export function OverlayUI() {
                whileInView={{ opacity: 1, x: 0 }}
                transition={{ duration: 0.8, delay: i * 0.15 }}
                viewport={{ once: false, margin: "-100px" }}
-               className="backdrop-blur-3xl bg-white/5 border border-white/10 p-8 rounded-[2rem] shadow-2xl hover:bg-white/10 transition-colors group relative overflow-hidden"
+               className="backdrop-blur-3xl bg-white/5 border border-white/10 p-6 md:p-8 rounded-[2rem] shadow-2xl hover:bg-white/10 transition-colors group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#F40009]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <h3 className="text-[#F40009] font-black mb-2 tracking-[0.2em] uppercase text-xs">{card.subtitle}</h3>
-              <h4 className="text-3xl lg:text-4xl text-white font-bold mb-3 tracking-tight">{card.title}</h4>
-              <p className="text-white/60 font-light leading-relaxed">{card.desc}</p>
+              <h3 className="text-[#F40009] font-black mb-1 md:mb-2 tracking-[0.2em] uppercase text-[10px] md:text-xs">{card.subtitle}</h3>
+              <h4 className="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-2 md:mb-3 tracking-tight">{card.title}</h4>
+              <p className="text-white/60 font-light leading-relaxed text-sm md:text-base">{card.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* 3. History of Coca-Cola (Rich Text Layout) */}
-      <section className="h-[100vh] w-full flex items-center justify-end px-4 md:px-24 relative pointer-events-auto bg-black">
+      <section className="h-[100vh] w-full flex items-end md:items-center justify-center md:justify-end px-6 pb-24 md:pb-0 md:px-24 relative pointer-events-auto bg-black">
         {/* Abstract Red Glow */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-[#F40009] rounded-full blur-[200px] opacity-20 pointer-events-none" />
         
@@ -66,17 +66,17 @@ export function OverlayUI() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="max-w-2xl relative z-10"
+          className="max-w-2xl relative z-10 flex flex-col items-center text-center md:items-start md:text-left"
         >
-          <div className="w-20 h-1 bg-[#F40009] mb-8" />
-          <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter mix-blend-difference leading-none">OUR<br/>LEGACY</h2>
-          <p className="text-2xl text-white/80 leading-snug mb-8 font-light max-w-xl">
+          <div className="w-20 h-1 bg-[#F40009] mb-6 md:mb-8" />
+          <h2 className="text-5xl md:text-8xl font-black text-white mb-6 md:mb-8 tracking-tighter mix-blend-difference leading-none">OUR<br/>LEGACY</h2>
+          <p className="text-lg md:text-2xl text-white/80 leading-snug mb-6 md:mb-8 font-light max-w-xl">
             Born in an Atlanta pharmacy in <span className="text-[#F40009] font-bold">1886</span>, Dr. John S. Pemberton crafted a distinctive syrup that forever changed the world.
           </p>
-          <p className="text-lg text-white/50 leading-relaxed font-light max-w-xl mb-12">
+          <p className="text-sm md:text-lg text-white/50 leading-relaxed font-light max-w-xl mb-8 md:mb-12">
             What started as a single fountain drink has grown into the most universally recognized emblem of refreshment. For over a century, Coca-Cola has been the catalyst for simple moments of joy, connecting billions of people across cultures and continents.
           </p>
-          <a href="#" className="uppercase tracking-[0.2em] text-[#F40009] font-bold text-sm hover:text-white transition-colors flex items-center gap-4 cursor-pointer">
+          <a href="#" className="uppercase tracking-[0.2em] text-[#F40009] font-bold text-xs md:text-sm hover:text-white transition-colors flex items-center gap-4 cursor-pointer">
             Read The Full Story <span className="text-xl">→</span>
           </a>
         </motion.div>
@@ -130,7 +130,7 @@ export function OverlayUI() {
       </section>
 
       {/* 5. Brand & Culture */}
-      <section className="h-[100vh] w-full flex items-center justify-start px-4 md:px-24 relative pointer-events-auto bg-black">
+      <section className="h-[100vh] w-full flex items-end md:items-center justify-center md:justify-start px-6 pb-24 md:pb-0 md:px-24 relative pointer-events-auto bg-black">
         {/* Scrolling Marquees Background */}
         <div className="absolute inset-0 flex flex-col justify-center opacity-5 pointer-events-none overflow-hidden select-none gap-8">
            <motion.div style={{ x: marqueeX }} className="text-[10vw] font-black text-white whitespace-nowrap">POP CULTURE • GLOBAL ICON • REAL MAGIC • POP CULTURE • GLOBAL ICON • REAL MAGIC •</motion.div>
@@ -141,14 +141,14 @@ export function OverlayUI() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          className="max-w-2xl relative z-10"
+          className="max-w-2xl relative z-10 flex flex-col items-center text-center md:items-start md:text-left"
         >
-          <div className="w-20 h-1 bg-white mb-8" />
-          <h2 className="text-6xl md:text-8xl font-black text-white mb-8 uppercase tracking-tighter leading-none">Culture<br/>& Canvas</h2>
-          <p className="text-2xl text-white/80 leading-snug mb-8 font-light max-w-xl">
+          <div className="w-20 h-1 bg-white mb-6 md:mb-8" />
+          <h2 className="text-5xl md:text-8xl font-black text-white mb-6 md:mb-8 uppercase tracking-tighter leading-none">Culture<br/>& Canvas</h2>
+          <p className="text-lg md:text-2xl text-white/80 leading-snug mb-6 md:mb-8 font-light max-w-xl">
             From iconic Christmas campaigns to unforgettable summer anthems, Coca-Cola is deeply woven into the fabric of global culture.
           </p>
-          <p className="text-lg text-white/50 leading-relaxed font-light max-w-xl mb-12">
+          <p className="text-sm md:text-lg text-white/50 leading-relaxed font-light max-w-xl mb-12">
             We don't just create a beverage. We curate experiences, build memories, and sponsor the world's most massive sporting and musical events. The Coca-Cola contour bottle has been painted by Andy Warhol and held by millions, proving that great design is truly universal.
           </p>
         </motion.div>

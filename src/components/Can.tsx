@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useMemo, useEffect } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF, Center, Text, Float, Sparkles } from '@react-three/drei'
 import * as THREE from 'three'
 import gsap from 'gsap'
@@ -23,6 +23,10 @@ export function Can() {
     const mainWrapper = document.getElementById('main-scroll')
     if (!mainWrapper) return
 
+    const isMobile = window.innerWidth < 768
+    const mx = isMobile ? 0.35 : 1
+    const my = isMobile ? 0.5 : 1
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: mainWrapper,
@@ -42,7 +46,7 @@ export function Can() {
     // Phase 1 (0 -> Sec 2): Pouring 
     // Moves right for the Bento constraints on left
     tl.to(outerGroupRef.current.rotation, { x: Math.PI / 2, z: Math.PI / 12, y: Math.PI / 6, duration: sec }, 0)
-      .to(outerGroupRef.current.position, { x: 1.5, y: 0, duration: sec }, "<")
+      .to(outerGroupRef.current.position, { x: 1.5 * mx, y: 0, duration: sec }, "<")
     
     // Animate Hero background away on first scroll
     tl.to(heroBgRef.current.position, { y: 15, duration: sec }, 0)
@@ -51,17 +55,17 @@ export function Can() {
     // Phase 2 (Sec 2 -> Sec 3): History 
     // Moving to left side upright (History text is on right)
     tl.to(outerGroupRef.current.rotation, { x: 0, z: -Math.PI / 12, y: -Math.PI / 6, duration: sec })
-      .to(outerGroupRef.current.position, { x: -2, y: -0.5, duration: sec }, "<")
+      .to(outerGroupRef.current.position, { x: -2 * mx, y: -0.5 * my, duration: sec }, "<")
 
     // Phase 3 (Sec 3 -> Sec 4): Varieties
     // Floating center horizontal spinning
     tl.to(outerGroupRef.current.rotation, { x: 0, z: 0, y: Math.PI * 2, duration: sec })
-      .to(outerGroupRef.current.position, { x: 0, y: 1.5, duration: sec }, "<")
+      .to(outerGroupRef.current.position, { x: 0, y: 1.5 * my, duration: sec }, "<")
 
     // Phase 4 (Sec 4 -> Sec 5): Brand
     // Floating right side (Brand text on left)
     tl.to(outerGroupRef.current.rotation, { x: Math.PI / 16, z: Math.PI / 16, y: -Math.PI / 8, duration: sec })
-      .to(outerGroupRef.current.position, { x: 2, y: 0, duration: sec }, "<")
+      .to(outerGroupRef.current.position, { x: 2 * mx, y: 0, duration: sec }, "<")
 
     // Phase 5 (Sec 5 -> Sec 6): Video Ad
     // Shoots way back to not obstruct video
@@ -113,6 +117,9 @@ export function Can() {
 }
 
 function HeroBackground3D() {
+  const { size } = useThree()
+  const isMobile = size.width < 768
+
   const cubes = useMemo(() => {
     return Array.from({ length: 15 }).map(() => ({
       position: [(Math.random() - 0.5) * 15, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 5 - 3],
@@ -127,7 +134,7 @@ function HeroBackground3D() {
       <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
         <Text
           position={[0, 0, -5]}
-          fontSize={6}
+          fontSize={isMobile ? 3 : 6}
           letterSpacing={-0.05}
           color="#ffffff"
           anchorX="center"
@@ -164,10 +171,12 @@ function HeroBackground3D() {
 
 function CanModel() {
   const { scene } = useGLTF('/coke-can.glb')
+  const { size } = useThree()
+  const isMobile = size.width < 768
   return (
     <Center>
       {/* Scale is 18 to make the model massive and majestic */}
-      <primitive object={scene} scale={18} />
+      <primitive object={scene} scale={isMobile ? 10 : 18} />
     </Center>
   )
 }
