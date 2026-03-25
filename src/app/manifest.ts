@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Coca-Cola 3D Experience',
-    short_name: 'Coke 3D',
+    short_name: 'Coke',
     description: 'A hyper-realistic Coca-Cola landing page',
     start_url: '/',
     display: 'standalone',

@@ -10,9 +10,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Coca-Cola 3D Experience",
   description: "A hyper-realistic Coca-Cola landing page",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png", // Explicitly define the Apple Touch Icon for iOS Safari!
+  },
   appleWebApp: {
     capable: true,
-    title: "Coca-Cola 3D",
+    title: "Coke", // Named exclusively 'Coke'
     statusBarStyle: "black-translucent",
   },
 };
