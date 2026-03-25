@@ -267,3 +267,6 @@ function LiquidParticles({ isPouring }: { isPouring: React.MutableRefObject<bool
     </instancedMesh>
   )
 }
+
+// Preload the model into memory the milisecond this script is parsed
+useGLTF.preload('/coke-can.glb')

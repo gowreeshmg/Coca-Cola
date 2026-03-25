@@ -31,6 +31,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased dark`}
     >
+      <head>
+        {/* Aggressively preload the massive 3D model before React even boots up! */}
+        <link rel="preload" href="/coke-can.glb" as="fetch" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
